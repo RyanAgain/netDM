@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.datamanager.dao.CoreDao">
+    <select id="queryByDate" resultType="Core">
+        SELECT *
+        FROM
+        core
+        WHERE
+        summit_time = #{summitTime};
+    </select>
+
+
+    <insert id="dailyCoreInsert">
+        INSERT ignore INTO core(gsm_num,lte_num,volte_num,volte_erl,lte_ratio,summit_time)
+        VALUES
+        (#{gsmNum},#{lteNum},#{volteNum},#{volteErl},#{lteRatio},now());
+    </insert>
+</mapper>

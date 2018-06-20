@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.datamanager.dao.RentinfoDao">
+    <insert id="SuccessRentInfo">
+     INSERT ignore INTO rentinfo(card_id,rent_name,rent_phone,rent_reason,room_num,yd_interface,start_time)
+     VALUES (#{cardId},#{rentName},#{rentPhone},#{rentReason},#{roomNum},#{ydInterface},now());
+    </insert>
+
+    <update id="ReturnCard">
+        UPDATE
+        rentinfo
+        SET
+        end_time = now()
+        WHERE
+        card_id = #{cardId};
+    </update>
+
+    <select id="queryRentById" resultType="Rentinfo">
+        SELECT card_id,rent_name,rent_phone,rent_reason,room_num,yd_interface,start_time,end_time
+        FROM rentinfo
+        WHERE card_id = #{cardId};
+    </select>
+
+    <select id="queryIdOrder" resultType="Rentinfo" >
+        SELECT card_id,rent_name,rent_phone,rent_reason,room_num,yd_interface,start_time,end_time
+        FROM rentinfo
+        WHERE card_id = #{cardId}
+        ORDER BY start_time DESC
+        LIMIT 1;
+    </select>
+
+    <select id="queryRentByAll" resultType="Rentinfo">
+        SELECT card_id,rent_name,rent_phone,rent_reason,room_num,yd_interface,start_time,end_time
+        FROM rentinfo
+        WHERE end_time IS NOT NULL
+        ORDER BY start_time DESC;
+    </select>
+
+    <select id="queryNoEndTime" resultType="Rentinfo">
+        SELECT card_id,rent_name,rent_phone,rent_reason,room_num,yd_interface,start_time,end_time
+        FROM rentinfo
+        WHERE rent_name =#{rentName} AND end_time IS NULL;
+    </select>
+
+    <select id="queryNoReturnCard" resultType="Rentinfo">
+        SELECT card_id,rent_name,rent_phone,rent_reason,room_num,yd_interface,start_time,end_time
+        FROM rentinfo
+        WHERE end_time IS NULL;
+    </select>
+
+</mapper>

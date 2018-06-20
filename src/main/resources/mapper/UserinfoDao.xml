@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datamanager.dao.UserinfoDao">
+    <select id="queryById" resultType="Userinfo">
+
+        SELECT *
+        FROM
+        userinfo
+        WHERE user_id=#{userId};
+    </select>
+
+
+    <select id="queryByName" resultType="Userinfo">
+        SELECT *
+        FROM
+        userinfo
+        WHERE user_name=#{userName};
+
+    </select>
+
+    <select id="getUserinfo" resultType="Userinfo">
+        SELECT *
+        FROM
+        userinfo;
+    </select>
+
+</mapper>

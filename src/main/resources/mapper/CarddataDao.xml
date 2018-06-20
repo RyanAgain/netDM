@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datamanager.dao.CarddataDao">
+    <update id="changestate">
+          UPDATE
+          carddata
+          SET
+          card_state = #{cardState}
+          WHERE
+          card_id = #{cardId};
+    </update>
+
+    <select id="queryById" resultType="Carddata">
+        SELECT card_id,card_name,card_state
+        FROM carddata
+        WHERE card_id = #{cardId};
+    </select>
+
+    <select id="queryByAll" resultType="Carddata">
+        SELECT card_id,card_name,card_state
+        FROM carddata
+        ORDER BY card_id DESC
+        limit #{offset},#{limit};
+    </select>
+
+</mapper>

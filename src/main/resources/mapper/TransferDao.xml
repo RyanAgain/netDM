@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datamanager.dao.TransferDao">
+    <insert id="transferinsert">
+       INSERT ignore INTO transfer
+        (first_use,first_usage,
+        sec_use,sec_usage,
+        third_use,third_usage,
+        forth_use,forth_usage,
+        fifth_use,fifth_usage,
+        summit_time)
+        VALUES
+        (#{firstUse},#{firstUsage},
+        #{secUse},#{secUsage},
+        #{thirdUse},#{thirdUsage},
+        #{forthUse},#{forthUsage},
+        #{fifthUse},#{fifthUsage},
+        now())
+    </insert>
+
+    <select id="queryByTime" resultType="Transfer">
+        SELECT *
+        FROM
+        transfer
+        WHERE
+        summit_time = #{summitTime};
+    </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datamanager.dao.OptimizationDao">
+    <select id="queryByDate" resultType="Optimization">
+        SELECT *
+        FROM
+        optimization
+        WHERE
+        summit_time = #{summitTime};
+    </select>
+
+    <insert id="dailyOptimizationInsert">
+        INSERT ignore INTO optimization(gsm_allvo,gsm_busyvo,gsm_alldata,gsm_busydata,gsm_usage,gsm_connect,gsm_drop,lte_alldata,lte_busy,lte_connect,lte_switch,lte_drop,summit_time)
+        VALUES
+        (#{gsmAllvo},#{gsmBusyvo},#{gsmAlldata},#{gsmbusydata},#{gsmUsage},#{gsmConnect},#{gsmDrop},#{lteAlldata},#{lteBusy},#{lteConnect},#{lteSwitch},#{lteDrop},now());
+    </insert>
+
+</mapper>

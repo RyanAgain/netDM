@@ -1,0 +1,34 @@
+#已编译的class文件
+*.class
+
+#package file相关包文件
+*.war
+*.ear
+
+#kidff3 ignore
+*.orig
+
+#maven ignore
+target/
+
+#eclipse ignore
+.settings/
+.classpatch
+
+#idea
+.idea/
+/idea/
+*.ipr
+*.iml
+*.iws
+
+#temp 临时文件
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+#system 系统文件忽略
+.DS_Store
+Thumbs.db

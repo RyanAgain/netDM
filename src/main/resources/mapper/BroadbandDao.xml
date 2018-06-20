@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.datamanager.dao.BroadbandDao">
+    <select id="queryByDate" resultType="Broadband">
+        SELECT *
+        FROM
+        broadband
+        WHERE summit_time = #{summitTime};
+    </select>
+
+    <insert id="dailyBroadbandInsert">
+        INSERT ignore INTO broadband(group_all,data_line,voice_line,gprs_line,rent_line,group_msg,school_line,family_all,one_line,optical_line,one_add,optical_add,summit_time)
+        VALUES
+        (#{groupAll},#{dataLine},#{voiceLine},#{gprsLine},#{rentLine},#{groupMsg},#{schoolLine},#{familyAll},#{oneLine},#{opticalLine},#{oneAdd},#{opticalAdd},now());
+    </insert>
+</mapper>
